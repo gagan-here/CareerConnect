@@ -5,6 +5,7 @@ import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.entity.Post;
 import com.careerconnect.postsservice.exception.ResourceNotFoundException;
 import com.careerconnect.postsservice.repository.PostsRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -34,5 +35,11 @@ public class PostsService {
             .orElseThrow(() -> new ResourceNotFoundException("Post not found with id: " + postId));
 
     return modelMapper.map(post, PostDto.class);
+  }
+
+  public List<PostDto> getAllPostsOfUser(Long userId) {
+    List<Post> posts = postsRepository.findByUserId(userId);
+
+    return posts.stream().map((element) -> modelMapper.map(element, PostDto.class)).toList();
   }
 }

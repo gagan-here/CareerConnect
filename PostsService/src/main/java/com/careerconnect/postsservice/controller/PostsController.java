@@ -4,6 +4,7 @@ import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.service.PostsService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,11 @@ public class PostsController {
   public ResponseEntity<PostDto> getPost(@PathVariable Long postId) {
     PostDto post = postsService.getPostById(postId);
     return ResponseEntity.ok(post);
+  }
+
+  @GetMapping("/users/{userId}/allPosts")
+  public ResponseEntity<List<PostDto>> getAllPostsOfUser(@PathVariable Long userId) {
+    List<PostDto> posts = postsService.getAllPostsOfUser(userId);
+    return ResponseEntity.ok(posts);
   }
 }
