@@ -1,5 +1,6 @@
 package com.careerconnect.userservice.controller;
 
+import com.careerconnect.userservice.dto.LoginRequestDto;
 import com.careerconnect.userservice.dto.SignupRequestDto;
 import com.careerconnect.userservice.dto.UserDto;
 import com.careerconnect.userservice.service.AuthService;
@@ -16,11 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-  private AuthService authService;
+  private final AuthService authService;
 
-  @PostMapping("signup")
+  @PostMapping("/signup")
   public ResponseEntity<UserDto> signUp(@RequestBody SignupRequestDto signupRequestDto) {
     UserDto userDto = authService.signUp(signupRequestDto);
     return new ResponseEntity<>(userDto, HttpStatus.CREATED);
+  }
+
+  @PostMapping("/login")
+  public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
+    String token = authService.login(loginRequestDto);
+    return ResponseEntity.ok(token);
   }
 }
