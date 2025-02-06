@@ -18,6 +18,8 @@
     <modules>
         <module>PostsService</module>
         <module>UserService</module>
+        <module>ApiGateway</module>
+        <module>DiscoveryServer</module>
     </modules>
 
     <properties>
