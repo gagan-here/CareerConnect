@@ -20,6 +20,7 @@
         <module>UserService</module>
         <module>ApiGateway</module>
         <module>DiscoveryServer</module>
+        <module>ConnectionsService</module>
     </modules>
 
     <properties>
