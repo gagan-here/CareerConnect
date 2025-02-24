@@ -1,6 +1,7 @@
 package com.careerconnect.ApiGateway.filters;
 
 import com.careerconnect.ApiGateway.JwtService;
+import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -33,14 +34,19 @@ public class AuthenticationFilter
         return exchange.getResponse().setComplete();
       }
 
-      final String token = tokenHeader.split("Bearer")[1];
+      final String token = tokenHeader.split("Bearer ")[1];
 
-      String userId = jwtService.getUserIdFromToken(token);
+      try {
+        String userId = jwtService.getUserIdFromToken(token);
+        ServerWebExchange modifedExchange =
+            exchange.mutate().request(r -> r.header("X-User-Id", userId)).build();
 
-      ServerWebExchange modifedExchange =
-          exchange.mutate().request(r -> r.header("X-User-Id", userId)).build();
-
-      return chain.filter(modifedExchange);
+        return chain.filter(modifedExchange);
+      } catch (JwtException e) {
+        log.error("JWT Exception: {}", e.getLocalizedMessage());
+        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+        return exchange.getResponse().setComplete();
+      }
     };
   }
 
