@@ -1,5 +1,6 @@
 package com.careerconnect.postsservice.controller;
 
+import com.careerconnect.postsservice.auth.UserContextHolder;
 import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.service.PostsService;
@@ -33,6 +34,9 @@ public class PostsController {
   @GetMapping("/{postId}")
   public ResponseEntity<PostDto> getPost(
       @PathVariable Long postId, HttpServletRequest httpServletRequest) {
+
+    Long userId = UserContextHolder.getCurrentUserId();
+
     PostDto post = postsService.getPostById(postId);
     return ResponseEntity.ok(post);
   }
