@@ -1,5 +1,8 @@
 package com.careerconnect.postsservice.service;
 
+import com.careerconnect.postsservice.auth.UserContextHolder;
+import com.careerconnect.postsservice.clients.ConnectionsClient;
+import com.careerconnect.postsservice.dto.PersonDto;
 import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.entity.Post;
@@ -18,6 +21,7 @@ public class PostsService {
 
   private final PostsRepository postsRepository;
   private final ModelMapper modelMapper;
+  private final ConnectionsClient connectionsClient;
 
   public PostDto createPost(PostCreateRequestDto postCreateRequestDto, Long userId) {
     Post post = modelMapper.map(postCreateRequestDto, Post.class);
@@ -29,6 +33,11 @@ public class PostsService {
 
   public PostDto getPostById(Long postId) {
     log.debug("Retrieving post with ID: {}", postId);
+
+    Long userId = UserContextHolder.getCurrentUserId();
+
+    List<PersonDto> firstConnections = connectionsClient.getFirstConnections(userId);
+
     Post post =
         postsRepository
             .findById(postId)
