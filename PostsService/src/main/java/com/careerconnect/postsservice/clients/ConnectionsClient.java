@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "ConnectionsService", path = "/connections")
 public interface ConnectionsClient {
 
-  @GetMapping("/core/{userId}/first-degree")
+  @GetMapping("/core/first-degree")
   List<PersonDto> getFirstConnections(@PathVariable Long userId);
 }

@@ -38,6 +38,8 @@ public class PostsService {
 
     List<PersonDto> firstConnections = connectionsClient.getFirstConnections(userId);
 
+    // TODO send Notification to all connections
+
     Post post =
         postsRepository
             .findById(postId)
