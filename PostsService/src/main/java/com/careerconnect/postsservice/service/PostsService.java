@@ -36,7 +36,7 @@ public class PostsService {
 
     Long userId = UserContextHolder.getCurrentUserId();
 
-    List<PersonDto> firstConnections = connectionsClient.getFirstConnections(userId);
+    List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
 
     // TODO send Notification to all connections
 
