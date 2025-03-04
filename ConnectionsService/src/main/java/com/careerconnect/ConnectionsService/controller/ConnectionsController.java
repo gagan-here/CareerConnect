@@ -6,7 +6,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +17,7 @@ public class ConnectionsController {
   private final ConnectionsService connectionsService;
 
   @GetMapping("/first-degree")
-  public ResponseEntity<List<Person>> getFirstConnections(@RequestHeader("X-User-Id") Long userId) {
-    return ResponseEntity.ok(connectionsService.getFirstDegreeConnection(userId));
+  public ResponseEntity<List<Person>> getFirstConnections() {
+    return ResponseEntity.ok(connectionsService.getFirstDegreeConnection());
   }
 }

@@ -14,7 +14,8 @@ public class ConnectionsService {
 
   private final PersonRepository personRepository;
 
-  public List<Person> getFirstDegreeConnection(Long userId) {
+  public List<Person> getFirstDegreeConnection() {
+    Long userId = UserContextHolder.getCurrentUserId();
     log.info("Getting first degree connections for user with id: {}", userId);
 
     return personRepository.getFirstDegreeConnections(userId);
