@@ -1,6 +1,6 @@
-package com.careerconnect.ApiGateway.filters;
+package com.careerconnect.apigateway.filters;
 
-import com.careerconnect.ApiGateway.JwtService;
+import com.careerconnect.apigateway.JwtService;
 import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;

@@ -1,4 +1,4 @@
-package com.careerconnect.ConnectionsService.auth;
+package com.careerconnect.connectionsservice.auth;
 
 public class UserContextHolder {
 

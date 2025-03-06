@@ -1,6 +1,6 @@
-package com.careerconnect.ConnectionsService.repository;
+package com.careerconnect.connectionsservice.repository;
 
-import com.careerconnect.ConnectionsService.entity.Person;
+import com.careerconnect.connectionsservice.entity.Person;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.neo4j.repository.Neo4jRepository;

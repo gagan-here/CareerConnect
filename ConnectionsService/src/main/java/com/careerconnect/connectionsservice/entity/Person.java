@@ -1,4 +1,4 @@
-package com.careerconnect.ConnectionsService.entity;
+package com.careerconnect.connectionsservice.entity;
 
 import lombok.Data;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;

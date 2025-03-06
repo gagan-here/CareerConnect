@@ -1,10 +1,10 @@
-package com.careerconnect.DiscoveryServer;
+package com.careerconnect.apigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DiscoveryServerApplicationTests {
+class ApiGatewayApplicationTests {
 
   @Test
   void contextLoads() {}

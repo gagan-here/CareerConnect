@@ -1,8 +1,8 @@
-package com.careerconnect.ConnectionsService.service;
+package com.careerconnect.connectionsservice.service;
 
-import com.careerconnect.ConnectionsService.auth.UserContextHolder;
-import com.careerconnect.ConnectionsService.entity.Person;
-import com.careerconnect.ConnectionsService.repository.PersonRepository;
+import com.careerconnect.connectionsservice.auth.UserContextHolder;
+import com.careerconnect.connectionsservice.entity.Person;
+import com.careerconnect.connectionsservice.repository.PersonRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.careerconnect.ConnectionsService.controller;
+package com.careerconnect.connectionsservice.controller;
 
-import com.careerconnect.ConnectionsService.entity.Person;
-import com.careerconnect.ConnectionsService.service.ConnectionsService;
+import com.careerconnect.connectionsservice.entity.Person;
+import com.careerconnect.connectionsservice.service.ConnectionsService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

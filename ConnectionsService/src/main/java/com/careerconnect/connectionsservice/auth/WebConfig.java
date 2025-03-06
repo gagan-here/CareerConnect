@@ -1,4 +1,4 @@
-package com.careerconnect.postsservice.auth;
+package com.careerconnect.connectionsservice.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.careerconnect.ApiGateway;
+package com.careerconnect.apigateway;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
