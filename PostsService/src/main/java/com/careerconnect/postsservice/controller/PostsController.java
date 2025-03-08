@@ -1,10 +1,8 @@
 package com.careerconnect.postsservice.controller;
 
-import com.careerconnect.postsservice.auth.UserContextHolder;
 import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.service.PostsService;
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,18 +23,13 @@ public class PostsController {
 
   @PostMapping
   public ResponseEntity<PostDto> createPost(
-      @RequestBody PostCreateRequestDto postCreateRequestDto,
-      HttpServletRequest httpServletRequest) {
-    PostDto createdPost = postsService.createPost(postCreateRequestDto, 1L);
+      @RequestBody PostCreateRequestDto postCreateRequestDto) {
+    PostDto createdPost = postsService.createPost(postCreateRequestDto);
     return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
   }
 
   @GetMapping("/{postId}")
-  public ResponseEntity<PostDto> getPost(
-      @PathVariable Long postId, HttpServletRequest httpServletRequest) {
-
-    Long userId = UserContextHolder.getCurrentUserId();
-
+  public ResponseEntity<PostDto> getPost(@PathVariable Long postId) {
     PostDto post = postsService.getPostById(postId);
     return ResponseEntity.ok(post);
   }

@@ -23,7 +23,9 @@ public class PostsService {
   private final ModelMapper modelMapper;
   private final ConnectionsClient connectionsClient;
 
-  public PostDto createPost(PostCreateRequestDto postCreateRequestDto, Long userId) {
+  public PostDto createPost(PostCreateRequestDto postCreateRequestDto) {
+    Long userId = getCurrentUserId();
+
     Post post = modelMapper.map(postCreateRequestDto, Post.class);
     post.setUserId(userId);
 
@@ -34,7 +36,7 @@ public class PostsService {
   public PostDto getPostById(Long postId) {
     log.debug("Retrieving post with ID: {}", postId);
 
-    Long userId = UserContextHolder.getCurrentUserId();
+    Long userId = getCurrentUserId();
 
     List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
 
@@ -52,5 +54,9 @@ public class PostsService {
     List<Post> posts = postsRepository.findByUserId(userId);
 
     return posts.stream().map((element) -> modelMapper.map(element, PostDto.class)).toList();
+  }
+
+  private static Long getCurrentUserId() {
+    return UserContextHolder.getCurrentUserId();
   }
 }
