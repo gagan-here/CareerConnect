@@ -21,6 +21,7 @@
         <module>ApiGateway</module>
         <module>DiscoveryServer</module>
         <module>ConnectionsService</module>
+        <module>NotificationService</module>
     </modules>
 
     <properties>
