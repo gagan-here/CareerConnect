@@ -11,4 +11,9 @@ public class KafkaTopicConfig {
   public NewTopic postCreatedTopic() {
     return new NewTopic("post-created-topic", 3, (short) 1);
   }
+
+  @Bean
+  public NewTopic postLikedTopic() {
+    return new NewTopic("post-liked-topic", 3, (short) 1);
+  }
 }
