@@ -6,12 +6,14 @@ import com.careerconnect.postsservice.dto.PersonDto;
 import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.entity.Post;
+import com.careerconnect.postsservice.event.PostCreatedEvent;
 import com.careerconnect.postsservice.exception.ResourceNotFoundException;
 import com.careerconnect.postsservice.repository.PostsRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +25,8 @@ public class PostsService {
   private final ModelMapper modelMapper;
   private final ConnectionsClient connectionsClient;
 
+  private final KafkaTemplate<Long, PostCreatedEvent> kafkaTemplate;
+
   public PostDto createPost(PostCreateRequestDto postCreateRequestDto) {
     Long userId = getCurrentUserId();
 
@@ -30,6 +34,16 @@ public class PostsService {
     post.setUserId(userId);
 
     Post savedPost = postsRepository.save(post);
+
+    PostCreatedEvent postCreatedEvent =
+        PostCreatedEvent.builder()
+            .postId(savedPost.getId())
+            .creatorId(userId)
+            .content(savedPost.getContent())
+            .build();
+
+    kafkaTemplate.send("post-created-topic", postCreatedEvent);
+
     return modelMapper.map(savedPost, PostDto.class);
   }
 
