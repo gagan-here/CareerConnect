@@ -1,5 +1,6 @@
 package com.careerconnect.postsservice.service;
 
+import com.careerconnect.postsservice.auth.UserContextHolder;
 import com.careerconnect.postsservice.entity.PostLike;
 import com.careerconnect.postsservice.exception.BadRequestException;
 import com.careerconnect.postsservice.exception.ResourceNotFoundException;
@@ -18,7 +19,8 @@ public class PostLikeService {
   private final PostLikeRepository postLikeRepository;
   private final PostsRepository postsRepository;
 
-  public void likePost(Long postId, Long userId) {
+  public void likePost(Long postId) {
+    Long userId = getUserId();
     log.info("Attempting to like the post with id: " + postId);
 
     boolean exists = postsRepository.existsById(postId);
@@ -35,7 +37,9 @@ public class PostLikeService {
   }
 
   @Transactional
-  public void unlikePost(Long postId, long userId) {
+  public void unlikePost(Long postId) {
+    Long userId = getUserId();
+
     log.info("Attempting to unlike the post with id: " + postId);
 
     boolean exists = postsRepository.existsById(postId);
@@ -47,5 +51,9 @@ public class PostLikeService {
     postLikeRepository.deleteByUserIdAndPostId(userId, postId);
 
     log.info("Post with id: {} unliked sucessfully", postId);
+  }
+
+  private static Long getUserId() {
+    return UserContextHolder.getCurrentUserId();
   }
 }
