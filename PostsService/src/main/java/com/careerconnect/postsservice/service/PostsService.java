@@ -2,7 +2,6 @@ package com.careerconnect.postsservice.service;
 
 import com.careerconnect.postsservice.auth.UserContextHolder;
 import com.careerconnect.postsservice.clients.ConnectionsClient;
-import com.careerconnect.postsservice.dto.PersonDto;
 import com.careerconnect.postsservice.dto.PostCreateRequestDto;
 import com.careerconnect.postsservice.dto.PostDto;
 import com.careerconnect.postsservice.entity.Post;
@@ -49,12 +48,6 @@ public class PostsService {
 
   public PostDto getPostById(Long postId) {
     log.debug("Retrieving post with ID: {}", postId);
-
-    Long userId = getCurrentUserId();
-
-    List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
-
-    // TODO send Notification to all connections
 
     Post post =
         postsRepository
