@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface ConnectionsClient {
 
   @GetMapping("/core/first-degree")
-  List<PersonDto> getFirstConnections();
+  List<PersonDto> getFirstConnections(Long userId);
 }

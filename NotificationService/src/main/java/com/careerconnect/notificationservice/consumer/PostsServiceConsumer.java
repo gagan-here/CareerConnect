@@ -18,6 +18,7 @@ public class PostsServiceConsumer {
 
   @KafkaListener(topics = "post-created-topic")
   public void handlePostCreated(PostCreatedEvent postCreatedEvent) {
-    List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
+    List<PersonDto> firstConnections =
+        connectionsClient.getFirstConnections(postCreatedEvent.getCreatorId());
   }
 }
