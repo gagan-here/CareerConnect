@@ -5,6 +5,7 @@ import com.careerconnect.notificationservice.dto.PersonDto;
 import com.careerconnect.notificationservice.entity.Notification;
 import com.careerconnect.notificationservice.repository.NotificationRepository;
 import com.careerconnect.postsservice.event.PostCreatedEvent;
+import com.careerconnect.postsservice.event.PostLikedEvent;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ public class PostsServiceConsumer {
 
   @KafkaListener(topics = "post-created-topic")
   public void handlePostCreated(PostCreatedEvent postCreatedEvent) {
-    log.info("Sending notifications: handlePostCreated");
+    log.info("Sending notifications: handlePostCreated: {}", postCreatedEvent);
     List<PersonDto> connections =
         connectionsClient.getFirstConnections(postCreatedEvent.getCreatorId());
 
@@ -33,6 +34,17 @@ public class PostsServiceConsumer {
               + "has created "
               + "a post, Check it out");
     }
+  }
+
+  @KafkaListener(topics = "post-liked-topic")
+  public void handlePostLiked(PostLikedEvent postLikedEvent) {
+    log.info("Sending notifications: handlePostLiked: {}", postLikedEvent);
+    String message =
+        String.format(
+            "Your post, %d has been liked by %d",
+            postLikedEvent.getPostId(), postLikedEvent.getLikedByUserId());
+
+    sendNotification(postLikedEvent.getCreatorId(), message);
   }
 
   public void sendNotification(Long userId, String message) {
