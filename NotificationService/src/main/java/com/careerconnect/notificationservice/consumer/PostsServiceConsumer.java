@@ -31,8 +31,8 @@ public class PostsServiceConsumer {
           connection.getUserId(),
           "Your connection "
               + postCreatedEvent.getCreatorId()
-              + "has created "
-              + "a post, Check it out");
+              + "has recently created "
+              + "a post, Do have a look!!");
     }
   }
 
