@@ -21,4 +21,8 @@ public class ConnectionsService {
 
     return personRepository.getFirstDegreeConnections(userId);
   }
+
+  public Boolean sendConnectionRequest(Long userId) {
+    return null;
+  }
 }
