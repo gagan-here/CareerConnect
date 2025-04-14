@@ -45,4 +45,8 @@ public class ConnectionsService {
     personRepository.addConnectionRequest(senderId, receiverId);
     return true;
   }
+
+  public Boolean acceptConnectionRequest(Long userId) {
+    return null;
+  }
 }

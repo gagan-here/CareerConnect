@@ -27,4 +27,9 @@ public class ConnectionsController {
   public ResponseEntity<Boolean> sendConnectionRequest(@PathVariable Long userId) {
     return ResponseEntity.ok(connectionsService.sendConnectionRequest(userId));
   }
+
+  @PostMapping("/accept/{userId}")
+  public ResponseEntity<Boolean> acceptConnectionRequest(@PathVariable Long userId) {
+    return ResponseEntity.ok(connectionsService.acceptConnectionRequest(userId));
+  }
 }
