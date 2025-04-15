@@ -46,7 +46,16 @@ public class ConnectionsService {
     return true;
   }
 
-  public Boolean acceptConnectionRequest(Long userId) {
-    return null;
+  public Boolean acceptConnectionRequest(Long senderId) {
+    Long receiverId = UserContextHolder.getCurrentUserId();
+
+    boolean connectionRequestExists =
+        personRepository.connectionRequestExists(senderId, receiverId);
+    if (!connectionRequestExists) {
+      throw new RuntimeException("No connection request is sent!");
+    }
+
+    personRepository.acceptConnectionRequest(senderId, receiverId);
+    return true;
   }
 }
