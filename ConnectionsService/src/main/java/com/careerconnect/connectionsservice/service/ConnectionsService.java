@@ -58,4 +58,17 @@ public class ConnectionsService {
     personRepository.acceptConnectionRequest(senderId, receiverId);
     return true;
   }
+
+  public Boolean rejectConnectionRequest(Long senderId) {
+    Long receiverId = UserContextHolder.getCurrentUserId();
+
+    boolean connectionRequestExists =
+        personRepository.connectionRequestExists(senderId, receiverId);
+    if (!connectionRequestExists) {
+      throw new RuntimeException("No connection exists, cannot delete aconnection!");
+    }
+
+    personRepository.rejectConnectionRequest(senderId, receiverId);
+    return true;
+  }
 }
