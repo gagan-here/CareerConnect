@@ -2,11 +2,14 @@ package com.careerconnect.connectionsservice.service;
 
 import com.careerconnect.connectionsservice.auth.UserContextHolder;
 import com.careerconnect.connectionsservice.entity.Person;
+import com.careerconnect.connectionsservice.event.AcceptConnectionRequestEvent;
+import com.careerconnect.connectionsservice.event.SendConnectionRequestevent;
 import com.careerconnect.connectionsservice.repository.PersonRepository;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Service;
 public class ConnectionsService {
 
   private final PersonRepository personRepository;
+  private final KafkaTemplate<Long, SendConnectionRequestevent> sendRequestKafkaTemplate;
+  private final KafkaTemplate<Long, AcceptConnectionRequestEvent> acceptRequestKafkaTemplate;
 
   public List<Person> getFirstDegreeConnection() {
     Long userId = UserContextHolder.getCurrentUserId();
@@ -43,6 +48,11 @@ public class ConnectionsService {
 
     log.info("Successfully sent connection request");
     personRepository.addConnectionRequest(senderId, receiverId);
+
+    SendConnectionRequestevent sendConnectionRequestevent =
+        SendConnectionRequestevent.builder().senderId(senderId).receiverId(receiverId).build();
+    sendRequestKafkaTemplate.send("send-connection-request-topic", sendConnectionRequestevent);
+
     return true;
   }
 
@@ -56,6 +66,14 @@ public class ConnectionsService {
     }
 
     personRepository.acceptConnectionRequest(senderId, receiverId);
+    log.info(
+        "Successfully accpted connection request, sender: {}, receiver: {}", senderId, receiverId);
+
+    AcceptConnectionRequestEvent acceptConnectionRequestevent =
+        AcceptConnectionRequestEvent.builder().senderId(senderId).receiverId(receiverId).build();
+    acceptRequestKafkaTemplate.send(
+        "accept-connection-request-topic", acceptConnectionRequestevent);
+
     return true;
   }
 
