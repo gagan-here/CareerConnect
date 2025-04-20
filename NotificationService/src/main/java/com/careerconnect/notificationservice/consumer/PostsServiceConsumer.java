@@ -2,8 +2,7 @@ package com.careerconnect.notificationservice.consumer;
 
 import com.careerconnect.notificationservice.clients.ConnectionsClient;
 import com.careerconnect.notificationservice.dto.PersonDto;
-import com.careerconnect.notificationservice.entity.Notification;
-import com.careerconnect.notificationservice.repository.NotificationRepository;
+import com.careerconnect.notificationservice.service.SendNotification;
 import com.careerconnect.postsservice.event.PostCreatedEvent;
 import com.careerconnect.postsservice.event.PostLikedEvent;
 import java.util.List;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class PostsServiceConsumer {
 
   private final ConnectionsClient connectionsClient;
-  private final NotificationRepository notificationRepository;
+  private final SendNotification sendNotification;
 
   @KafkaListener(topics = "post-created-topic")
   public void handlePostCreated(PostCreatedEvent postCreatedEvent) {
@@ -27,7 +26,7 @@ public class PostsServiceConsumer {
         connectionsClient.getFirstConnections(postCreatedEvent.getCreatorId());
 
     for (PersonDto connection : connections) {
-      sendNotification(
+      sendNotification.send(
           connection.getUserId(),
           "Your connection "
               + postCreatedEvent.getCreatorId()
@@ -44,14 +43,6 @@ public class PostsServiceConsumer {
             "Your post, %d has been liked by %d",
             postLikedEvent.getPostId(), postLikedEvent.getLikedByUserId());
 
-    sendNotification(postLikedEvent.getCreatorId(), message);
-  }
-
-  public void sendNotification(Long userId, String message) {
-    Notification notification = new Notification();
-    notification.setMessage(message);
-    notification.setUserId(userId);
-
-    notificationRepository.save(notification);
+    sendNotification.send(postLikedEvent.getCreatorId(), message);
   }
 }
