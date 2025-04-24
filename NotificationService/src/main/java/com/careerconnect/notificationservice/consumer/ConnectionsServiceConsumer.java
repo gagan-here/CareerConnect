@@ -1,5 +1,6 @@
 package com.careerconnect.notificationservice.consumer;
 
+import com.careerconnect.connectionsservice.event.AcceptConnectionRequestEvent;
 import com.careerconnect.connectionsservice.event.SendConnectionRequestevent;
 import com.careerconnect.notificationservice.service.SendNotification;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,15 @@ public class ConnectionsServiceConsumer {
             + sendConnectionRequestevent.getSenderId();
 
     sendNotification.send(sendConnectionRequestevent.getReceiverId(), message);
+  }
+
+  @KafkaListener(topics = "accept-connectionrequest-topic")
+  public void handleAcceptConnectionRequest(
+      AcceptConnectionRequestEvent acceptConnectionRequestEvent) {
+    String message =
+        "Your connection request has been accepted by user with id: %d"
+            + acceptConnectionRequestEvent.getReceiverId();
+
+    sendNotification.send(acceptConnectionRequestEvent.getSenderId(), message);
   }
 }
