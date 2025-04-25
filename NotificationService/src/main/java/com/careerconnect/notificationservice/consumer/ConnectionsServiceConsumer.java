@@ -15,8 +15,9 @@ public class ConnectionsServiceConsumer {
 
   private final SendNotification sendNotification;
 
-  @KafkaListener(topics = "send-connectionrequest-topic")
+  @KafkaListener(topics = "send-connection-request-topic")
   public void handleSendConnectionRequest(SendConnectionRequestevent sendConnectionRequestevent) {
+    log.info("handle connections: handleSendConnectionRequest: {}", sendConnectionRequestevent);
     String message =
         "You have received a connection request from user with id: %d"
             + sendConnectionRequestevent.getSenderId();
@@ -24,9 +25,10 @@ public class ConnectionsServiceConsumer {
     sendNotification.send(sendConnectionRequestevent.getReceiverId(), message);
   }
 
-  @KafkaListener(topics = "accept-connectionrequest-topic")
+  @KafkaListener(topics = "accept-connection-request-topic")
   public void handleAcceptConnectionRequest(
       AcceptConnectionRequestEvent acceptConnectionRequestEvent) {
+    log.info("handle connections: acceptConnectionRequestEvent: {}", acceptConnectionRequestEvent);
     String message =
         "Your connection request has been accepted by user with id: %d"
             + acceptConnectionRequestEvent.getReceiverId();
