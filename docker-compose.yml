@@ -3,8 +3,26 @@ version: "3.8"
 services:
   kafka:
     image: bitnami/kafka:latest
+    container_name: kafka
+    volumes:
+      - "kafka_data:/bitnami"
+    networks:
+      - careerconnect-network
+    environment:
+      # KRaft
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=SASL_SSL://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+      - KAFKA_CFG_ADVERTISED_LISTENERS=SASL_SSL://:9092
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=SASL_SSL
 
 
 networks:
+  careerconnect-network:
 
 volumes:
+  kafka_data:
