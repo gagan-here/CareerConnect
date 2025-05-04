@@ -20,6 +20,11 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=SASL_SSL
 
+  notification-service:
+    image: gaganhere/career-connect/notification-service
+    container_name: notification-service
+    networks:
+      - careerconnect-network
 
 networks:
   careerconnect-network:
