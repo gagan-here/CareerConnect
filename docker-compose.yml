@@ -38,6 +38,14 @@ services:
     networks:
       - careerconnect-network
 
+  discovery-server:
+    image: gaganhere/career-connect/discovery-server
+    container_name: discovery-server
+    networks:
+      - careerconnect-network
+    ports:
+      - "8761:8761"
+
 networks:
   careerconnect-network:
 
