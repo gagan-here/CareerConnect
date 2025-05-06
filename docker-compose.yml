@@ -14,17 +14,17 @@ services:
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       # Listeners
-      - KAFKA_CFG_LISTENERS=SASL_SSL://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
-      - KAFKA_CFG_ADVERTISED_LISTENERS=SASL_SSL://:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=SASL_SSL
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
 
   notification-db:
     image: postgres
     container_name: notification-db
     environment:
-      - POSTGRES_DB=notification-db
+      - POSTGRES_DB=notificationDB
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
     networks:
@@ -37,6 +37,10 @@ services:
     container_name: notification-service
     networks:
       - careerconnect-network
+    depends_on:
+      - discovery-server
+      - notification-db
+      - kafka
 
   discovery-server:
     image: gaganhere/career-connect/discovery-server
@@ -51,3 +55,4 @@ networks:
 
 volumes:
   kafka_data:
+  notification-db-data:
