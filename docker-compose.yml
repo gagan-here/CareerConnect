@@ -20,6 +20,21 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
 
+  kafbat-ui:
+    container_name: kafbat-ui
+    image: ghcr.io/kafbat/kafka-ui:latest
+    ports:
+      - 8090:8080
+    networks:
+      - careerconnect-network
+    depends_on:
+      - kafka
+    environment:
+      DYNAMIC_CONFIG_ENABLED: true
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERs_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERs_0_KSQLDBSERVER: http://ksqldb0:8080
+
   notification-db:
     image: postgres
     container_name: notification-db
