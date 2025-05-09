@@ -30,7 +30,6 @@ services:
     depends_on:
       - kafka
     environment:
-      DYNAMIC_CONFIG_ENABLED: true
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERs_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERs_0_KSQLDBSERVER: http://ksqldb0:8080
@@ -46,6 +45,30 @@ services:
       - careerconnect-network
     volumes:
       - notification-db-data:/var/lib/postgresql/data
+
+  posts-db:
+    image: postgres
+    container_name: posts-db
+    environment:
+      - POSTGRES_DB=postsDB
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    networks:
+      - careerconnect-network
+    volumes:
+      - posts-db-data:/var/lib/postgresql/data
+
+  user-db:
+    image: postgres
+    container_name: user-db
+    environment:
+      - POSTGRES_DB=usersDB
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    networks:
+      - careerconnect-network
+    volumes:
+      - users-db-data:/var/lib/postgresql/data
 
   notification-service:
     image: gaganhere/career-connect/notification-service
@@ -71,3 +94,5 @@ networks:
 volumes:
   kafka_data:
   notification-db-data:
+  posts-db-data:
+  users-db-data:
