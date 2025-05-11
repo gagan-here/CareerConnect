@@ -80,6 +80,16 @@ services:
       - notification-db
       - kafka
 
+  posts-service:
+    image: gaganhere/career-connect/posts-service
+    container_name: notification-service
+    networks:
+      - careerconnect-network
+    depends_on:
+      - discovery-server
+      - posts-db
+      - kafka
+
   discovery-server:
     image: gaganhere/career-connect/discovery-server
     container_name: discovery-server
