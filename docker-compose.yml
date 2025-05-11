@@ -90,6 +90,16 @@ services:
       - posts-db
       - kafka
 
+  user-service:
+    image: gaganhere/career-connect/user-service
+    container_name: user-service
+    networks:
+      - careerconnect-network
+    depends_on:
+      - discovery-server
+      - user-db
+      - kafka
+
   discovery-server:
     image: gaganhere/career-connect/discovery-server
     container_name: discovery-server
