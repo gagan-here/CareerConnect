@@ -70,6 +70,19 @@ services:
     volumes:
       - users-db-data:/var/lib/postgresql/data
 
+  connections-db:
+    image: neo4j
+    container_name: connections-db
+    environment:
+      - NEO4J_AUTH=neo4j/password # neo4j username and password
+    ports:
+      - "7474:7474"  # HTTP port
+      - "7687:7687"  # Bolt port
+    volumes:
+      - connections-db-data:/data
+    networks:
+      - careerconnect-network
+
   notification-service:
     image: gaganhere/career-connect/notification-service
     container_name: notification-service
@@ -116,3 +129,4 @@ volumes:
   notification-db-data:
   posts-db-data:
   users-db-data:
+  connections-db-data:
