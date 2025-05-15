@@ -58,9 +58,9 @@ services:
     volumes:
       - posts-db-data:/var/lib/postgresql/data
 
-  user-db:
+  users-db:
     image: postgres
-    container_name: user-db
+    container_name: users-db
     environment:
       - POSTGRES_DB=usersDB
       - POSTGRES_USER=user
@@ -105,7 +105,7 @@ services:
 
   posts-service:
     image: gaganhere/career-connect/posts-service
-    container_name: notification-service
+    container_name: posts-service
     networks:
       - careerconnect-network
     depends_on:
@@ -120,7 +120,7 @@ services:
       - careerconnect-network
     depends_on:
       - discovery-server
-      - user-db
+      - users-db
       - kafka
 
   discovery-server:
@@ -136,6 +136,8 @@ services:
     container_name: api-gateway
     networks:
       - careerconnect-network
+    ports:
+      - "8080:8080"
     depends_on:
       - discovery-server
 
