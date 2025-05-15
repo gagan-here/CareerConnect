@@ -131,6 +131,14 @@ services:
     ports:
       - "8761:8761"
 
+  api-gateway:
+    image: gaganhere/career-connect/api-gateway
+    container_name: api-gateway
+    networks:
+      - careerconnect-network
+    depends_on:
+      - discovery-server
+
 networks:
   careerconnect-network:
 
