@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mystatefulset
+  name: notification-db
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: notification-db
   serviceName: <ServiceName>
   replicas: 2
   template:
