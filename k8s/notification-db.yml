@@ -11,22 +11,24 @@ spec:
   template:
     metadata:
       labels:
-        app: myapp
+        app: notification-db
     spec:
       containers:
       - name: myapp
-        image: registry.k8s.io/nginx-slim:0.8
+        image: postgres:16
         ports:
-        - containerPort: 80
+        - containerPort: 5432
           name: web
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: data
+          mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 1Gi
+      storageClassName: "standard-rwo"
+      volumeMode: Filesystem
