@@ -14,7 +14,7 @@ spec:
         app: notification-db
     spec:
       containers:
-      - name: myapp
+      - name: notification-db
         image: postgres:16
         ports:
         - containerPort: 5432
