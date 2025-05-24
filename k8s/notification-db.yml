@@ -56,10 +56,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: notification-db
 spec:
+  clusterIp: None
   selector:
-    app: myapp
+    app: notification-db
   ports:
-    - port: <Port>
-      targetPort: <Target Port>
+    - port: 5432
+      targetPort: 5432
