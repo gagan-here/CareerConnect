@@ -23,3 +23,15 @@ spec:
           requests:
             memory: "100Mi"
             cpu: "100m"
+        env:
+          - name: POSTGRES_USER
+            value: user
+
+          - name: POSTGRES_PASSWORD
+            value: password
+
+          - name: POSTGRES_DB
+            value: userDB
+
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
