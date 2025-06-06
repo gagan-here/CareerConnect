@@ -13,11 +13,18 @@ public class SendNotification {
   private final NotificationRepository notificationRepository;
 
   public void send(Long userId, String message) {
-    Notification notification = new Notification();
-    notification.setMessage(message);
-    notification.setUserId(userId);
+    log.info("Notification content: {} for user {}", message, userId);
 
-    notificationRepository.save(notification);
-    log.info("Notification saved for user: {}", userId);
+    try {
+      Notification notification = new Notification();
+      notification.setMessage(message);
+      notification.setUserId(userId);
+
+      notificationRepository.save(notification);
+      log.info("Notification saved for user: {}", userId);
+    } catch (Exception e) {
+      log.error("Failed to save notification for user: {} | Error: {}", userId, e.getMessage());
+      throw e;
+    }
   }
 }
