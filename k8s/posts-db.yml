@@ -50,3 +50,13 @@ spec:
             storage: 1Gi
         storageClassName: "standard-rwo"
         volumeMode: Filesystem
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-db
+spec:
+  clusterIp: None
+
