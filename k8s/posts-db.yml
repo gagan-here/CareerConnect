@@ -59,4 +59,8 @@ metadata:
   name: posts-db
 spec:
   clusterIp: None
-
+  selector:
+    app: posts-db
+  ports:
+    - port: 5432
+      targetPort: 5432
