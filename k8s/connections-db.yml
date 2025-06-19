@@ -12,3 +12,10 @@ spec:
     metadata:
       labels:
         app: connections-db
+    spec:
+      containers:
+        - name: connections-db
+          image: neo4j
+          ports:
+            - containerPort: 7687
+              name: bolt
