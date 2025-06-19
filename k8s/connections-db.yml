@@ -6,3 +6,9 @@ spec:
   selector:
     matchLabels:
       app: connections-db
+  serviceName: connections-db
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: connections-db
