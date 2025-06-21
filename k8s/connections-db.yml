@@ -19,3 +19,6 @@ spec:
           ports:
             - containerPort: 7687
               name: bolt
+          volumeMounts:
+            - name: data
+              mountPath: /data
