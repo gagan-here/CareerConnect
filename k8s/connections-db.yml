@@ -23,3 +23,6 @@ spec:
             requests:
               memory: "100Mi"
               cpu: "100m"
+            env:
+              - name: NEO4J_AUTH
+                value: neo4j/password
