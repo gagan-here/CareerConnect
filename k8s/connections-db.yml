@@ -32,3 +32,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
