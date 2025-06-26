@@ -37,3 +37,9 @@ spec:
         name: data
       spec:
         accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: "standard-rwo"
+        volumeMode: Filesystem
+
