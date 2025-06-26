@@ -43,3 +43,12 @@ spec:
         storageClassName: "standard-rwo"
         volumeMode: Filesystem
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: connections-db
+spec:
+  clusterIp: None
+
