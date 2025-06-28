@@ -51,4 +51,8 @@ metadata:
   name: connections-db
 spec:
   clusterIp: None
-
+  selector:
+    app: connections-db
+  ports:
+    - port: 7687
+      targetPort: 7687
