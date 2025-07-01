@@ -2,3 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: posts-service
+spec:
+  selector:
+    matchLabels:
+      app: posts-service
