@@ -6,3 +6,7 @@ spec:
   selector:
     matchLabels:
       app: posts-service
+  template:
+    metadata:
+      labels:
+        app: posts-service
