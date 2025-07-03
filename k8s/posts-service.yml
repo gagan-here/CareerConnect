@@ -10,3 +10,7 @@ spec:
     metadata:
       labels:
         app: posts-service
+    spec:
+      containers:
+        - name: posts-service
+          image: gaganhere/career-connect/posts-service
