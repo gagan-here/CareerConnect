@@ -21,3 +21,10 @@ spec:
             requests:
               memory: "200Mi"
               cpu: "100m"
+            env:
+              - name: POSTGRES_USER
+                value: user
+
+              - name: POSTGRES_PASSWORD
+                value: password
+
