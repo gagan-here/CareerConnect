@@ -22,9 +22,12 @@ spec:
               memory: "200Mi"
               cpu: "100m"
             env:
-              - name: POSTGRES_USER
+              - name: SPRING_PROFILES_ATIVE
+                value: k8s
+
+              - name: DB_USER
                 value: user
 
-              - name: POSTGRES_PASSWORD
+              - name: DB_PASSWORD
                 value: password
 
