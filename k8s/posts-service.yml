@@ -31,3 +31,10 @@ spec:
               - name: DB_PASSWORD
                 value: password
 
+              - name: DB_SERVICE
+                value: posts-db
+
+              - name: DB_NAME
+                value: postsDB
+          ports:
+            - containerPort: 9010
