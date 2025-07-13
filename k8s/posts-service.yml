@@ -48,3 +48,6 @@ metadata:
 spec:
   selector:
     app: posts-service
+  ports:
+    - port: 80
+      targetPort: 9010
