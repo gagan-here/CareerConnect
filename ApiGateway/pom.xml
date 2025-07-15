@@ -11,7 +11,7 @@
     <groupId>com.careerconnect</groupId>
     <artifactId>ApiGateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ApiGateway</name>
+    <name>apigateway</name>
     <description>Api gateway for career connect</description>
     <url/>
     <licenses>
@@ -123,6 +123,14 @@
                         </tags>
                     </to>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
