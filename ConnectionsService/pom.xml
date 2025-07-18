@@ -11,7 +11,7 @@
 	<groupId>com.careerconnect</groupId>
 	<artifactId>ConnectionsService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ConnectionsService</name>
+	<name>connectionsservice</name>
 	<description>ConnectionsService for CareerConnect</description>
 	<url/>
 	<licenses>
