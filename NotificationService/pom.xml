@@ -11,7 +11,7 @@
     <groupId>com.careerconnect</groupId>
     <artifactId>NotificationService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>NotificationService</name>
+    <name>notificationservice</name>
     <description>Notification service for careerconnect</description>
     <url/>
     <licenses>
