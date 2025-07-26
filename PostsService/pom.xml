@@ -11,7 +11,7 @@
     <groupId>com.careerconnect</groupId>
     <artifactId>PostsService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PostsService</name>
+    <name>postsservice</name>
     <description>Posts service in career connect project</description>
     <url/>
     <licenses>
