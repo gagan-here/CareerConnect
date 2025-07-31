@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: connections-db
+  name: neo4j
+  labels:
+    app: neo4j
 spec:
   selector:
     matchLabels:
