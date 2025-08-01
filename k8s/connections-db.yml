@@ -8,8 +8,8 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: connections-db
-  serviceName: connections-db
+      app: neo4j
+  serviceName: "neo4j"
   template:
     metadata:
       labels:
