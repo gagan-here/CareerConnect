@@ -18,3 +18,8 @@ spec:
       containers:
         - name: neo4j
           image: neo4j:4.4.39-community
+          resources:
+            limits:
+              cpu: "200m"
+              memory: 4Gi
+
