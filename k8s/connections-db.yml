@@ -25,3 +25,5 @@ spec:
             requests:
               cpu: 100m
               memory: 600Mi
+          ports:
+            - containerPort: 7687 # Bolt
