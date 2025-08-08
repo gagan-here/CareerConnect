@@ -32,3 +32,9 @@ spec:
               value: "neo4j/password" # Change as per your setup
             - name: NEO4J_dbms_memory_heap_initial__size
               value: "512M"
+            - name: NEO4J_dbms_memory_heap_max__size
+              value: "2G"
+            - name: NEO4J_dbms_default__listen__address
+              value: "0.0.0.0"
+            - name: NEO4J_ACCEPT_LICENSE_AGREEMENT
+              value: "yes"
