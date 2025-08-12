@@ -53,3 +53,5 @@ spec:
             storage: 2Gi
     - metadata:
         name: neo4j-logs
+      spec:
+        accessModes: ["ReadWriteOnce"]
