@@ -51,4 +51,5 @@ spec:
         resources:
           requests:
             storage: 2Gi
-
+    - metadata:
+        name: neo4j-logs
