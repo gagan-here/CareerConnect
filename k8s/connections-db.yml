@@ -62,3 +62,8 @@ spec:
 ---
 apiVersion: v1
 kind: Service
+metadata:
+  name: neo4j
+  labels:
+    app: neo4j
+
