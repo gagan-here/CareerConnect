@@ -66,4 +66,5 @@ metadata:
   name: neo4j
   labels:
     app: neo4j
-
+spec:
+  clusterIP: None
