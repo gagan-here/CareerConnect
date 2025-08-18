@@ -68,3 +68,5 @@ metadata:
     app: neo4j
 spec:
   clusterIP: None
+  ports:
+    - port: 7687
