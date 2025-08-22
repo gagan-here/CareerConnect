@@ -4,3 +4,5 @@ metadata:
   labels:
     app: kafka
   name: kafka
+spec:
+  clusterIP: None
