@@ -6,3 +6,6 @@ metadata:
   name: kafka
 spec:
   clusterIP: None
+  ports:
+    - name: tcp-kafka-int
+      port: 9092
