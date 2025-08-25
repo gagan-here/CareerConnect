@@ -9,3 +9,5 @@ spec:
   ports:
     - name: tcp-kafka-int
       port: 9092
+      protocol: TCP
+      targetPort: tcp-kafka-int
