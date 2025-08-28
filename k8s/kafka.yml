@@ -13,3 +13,5 @@ spec:
       targetPort: tcp-kafka-int
     - name: tcp-kafka-ctrl
       port: 29093
+      protocol: TCP
+      targetPort: tcp-kafka-ctrl
