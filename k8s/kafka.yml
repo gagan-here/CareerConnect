@@ -15,3 +15,5 @@ spec:
       port: 29093
       protocol: TCP
       targetPort: tcp-kafka-ctrl
+  selector:
+    app: kafka
