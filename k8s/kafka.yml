@@ -17,3 +17,6 @@ spec:
       targetPort: tcp-kafka-ctrl
   selector:
     app: kafka
+---
+apiVersion: apps/v1
+kind: StatefulSet
