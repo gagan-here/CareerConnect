@@ -20,3 +20,6 @@ spec:
 ---
 apiVersion: apps/v1
 kind: StatefulSet
+metadata:
+  labels:
+    app: kafka
