@@ -24,3 +24,6 @@ metadata:
   labels:
     app: kafka
   name: kafka
+spec:
+  podManagementPolicy: Parallel
+  replicas: 2
