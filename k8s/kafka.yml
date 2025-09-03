@@ -27,3 +27,4 @@ metadata:
 spec:
   podManagementPolicy: Parallel
   replicas: 2
+  revisionHistoryLimit: 10
