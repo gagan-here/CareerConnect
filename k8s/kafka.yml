@@ -36,3 +36,10 @@ spec:
     metadata:
       labels:
         app: kafka
+    spec:
+      containers:
+        - command:
+            - sh
+            - -exc
+            - |
+              export CLUSTER_ID="6PMpHYL9QkeyXRj9Nrp4KA" && \
