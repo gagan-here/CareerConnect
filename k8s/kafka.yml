@@ -32,3 +32,7 @@ spec:
     matchLabels:
       app: kafka
   serviceName: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
