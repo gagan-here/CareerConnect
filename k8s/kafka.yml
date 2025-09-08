@@ -44,3 +44,4 @@ spec:
             - |
               export CLUSTER_ID="6PMpHYL9QkeyXRj9Nrp4KA" && \
               export KAFKA_NODE_ID=${HOSTNAME##*-} 
+              export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${POD_NAME}.kafka:9092
