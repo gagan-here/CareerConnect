@@ -59,3 +59,4 @@ spec:
                   fieldPath: metadata.name
           name: kafka
           image: docker.io/confluentinc/confluent-local:7.5.0
+          imagePullPolicy: IfNotPresent
