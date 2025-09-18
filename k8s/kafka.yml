@@ -64,3 +64,5 @@ spec:
             - containerPort: 9092
               name: tcp-kafka-int
               protocol: TCP
+            - containerPort: 29093
+              name: tcp-kafka-ctrl
