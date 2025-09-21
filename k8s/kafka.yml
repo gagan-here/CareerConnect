@@ -66,3 +66,4 @@ spec:
               protocol: TCP
             - containerPort: 29093
               name: tcp-kafka-ctrl
+              protocol: TCP
