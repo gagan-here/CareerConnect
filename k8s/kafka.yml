@@ -67,3 +67,6 @@ spec:
             - containerPort: 29093
               name: tcp-kafka-ctrl
               protocol: TCP
+          resources:
+            limits:
+              cpu: "200m"
