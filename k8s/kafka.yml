@@ -70,3 +70,4 @@ spec:
           resources:
             limits:
               cpu: "200m"
+              memory: 1Gi
