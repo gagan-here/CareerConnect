@@ -79,4 +79,4 @@ spec:
             capabilities:
               drop:
                 - ALL
-             readOnlyRootFilesystem: true
+            # readOnlyRootFilesystem: true
