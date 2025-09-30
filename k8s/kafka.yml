@@ -80,3 +80,4 @@ spec:
               drop:
                 - ALL
             # readOnlyRootFilesystem: true
+            runAsGroup: 1000
