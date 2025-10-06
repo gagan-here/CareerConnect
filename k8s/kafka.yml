@@ -86,3 +86,4 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - mountPath: /etc/kafka
+              name: config
