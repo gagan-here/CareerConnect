@@ -87,3 +87,4 @@ spec:
           volumeMounts:
             - mountPath: /etc/kafka
               name: config
+      dnsPolicy: ClusterFirst
