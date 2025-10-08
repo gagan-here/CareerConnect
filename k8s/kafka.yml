@@ -89,3 +89,4 @@ spec:
               name: config
       dnsPolicy: ClusterFirst
       restartPolicy: Always
+      schedulerName: default-scheduler
