@@ -93,3 +93,5 @@ spec:
       securityContext:
         fsGroup: 1000
       terminationGracePeriodSeconds: 30
+      volumes:
+        - emptyDir: {}
