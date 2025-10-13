@@ -95,4 +95,3 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
         - emptyDir: {}
-          name: config
