@@ -6,3 +6,6 @@ metadata:
     app: kafka-ui
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-ui
