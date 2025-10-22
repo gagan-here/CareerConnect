@@ -9,3 +9,7 @@ spec:
   selector:
     matchLabels:
       app: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-ui
