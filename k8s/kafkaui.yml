@@ -13,3 +13,6 @@ spec:
     metadata:
       labels:
         app: kafka-ui
+    spec:
+      containers:
+      - name: kafka-ui
