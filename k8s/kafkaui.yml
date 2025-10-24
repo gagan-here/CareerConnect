@@ -17,3 +17,5 @@ spec:
       containers:
       - name: kafka-ui
         image: provectuslabs/kafka-ui:latest
+        env:
+        - name: KAFKA_CLUSTERS_0_NAME
