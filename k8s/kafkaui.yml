@@ -19,3 +19,4 @@ spec:
         image: provectuslabs/kafka-ui:latest
         env:
         - name: KAFKA_CLUSTERS_0_NAME
+          value: "K8 Kafka Cluster"
