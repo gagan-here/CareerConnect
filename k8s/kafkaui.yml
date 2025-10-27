@@ -20,3 +20,4 @@ spec:
         env:
         - name: KAFKA_CLUSTERS_0_NAME
           value: "K8 Kafka Cluster"
+        - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
