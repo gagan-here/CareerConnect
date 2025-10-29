@@ -22,3 +22,4 @@ spec:
           value: "K8 Kafka Cluster"
         - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
           value: kafka:9092
+        imagePullPolicy: Always
