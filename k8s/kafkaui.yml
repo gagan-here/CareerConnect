@@ -23,3 +23,6 @@ spec:
         - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
           value: kafka:9092
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "200Mi"
