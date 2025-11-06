@@ -32,3 +32,5 @@ spec:
             cpu: "100m"
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
