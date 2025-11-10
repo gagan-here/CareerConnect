@@ -35,3 +35,5 @@ spec:
 ---
 apiVersion: v1
 kind: Service
+metadata:
+  name: kafka-ui-service
